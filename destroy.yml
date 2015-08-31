@@ -1,21 +1,20 @@
 - hosts: localhost
+  vars:
+    - ansible_python_interpreter: python
   vars_files:
     - vars.yml
-  vars_prompt:
-    do_name: "Servername to destroy"
-    do_dns: "DNS name to delete"
+#  vars_prompt:
+#    do_name: "Servername to destroy"
+#    do_dns: "DNS name to delete"
   tasks:
     - digital_ocean: >
-        state=absent
-        name={{ do_name }}
-        unique_name=yes
-        client_id={{ do_client_id }}
-        api_key={{ do_api_key }}
-
-    - name: Remove DNS record
-      digital_ocean_domain: >
-        state=absent
-        name="{{ do_dns }}"
-        client_id={{ do_client_id }}
-        api_key={{ do_api_key }}
-      when: do_dns|length > 0
+        state=present
+        command=ssh
+        name=my_droplet
+        size_id=6
+        region_id=5
+        image_id=9801950
+        wait_timeout=500
+      register: my_droplet
+    - debug: msg="ID is {{ my_droplet.droplet.id }}"
+    - debug: msg="IP is {{ my_droplet.droplet.ip_address }}"
