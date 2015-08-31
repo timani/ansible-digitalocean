@@ -5,21 +5,21 @@ Use the Digital Ocean API v2 to create and Droplets using Ansible 2.0:
 
 ### Table of contents
 - [Overview](#Overview)
-- [How to use this repo](#features)
+- [How to use this repo](#how-to-use-this-repo)
 - [Requirements](#requirements)
-- [Installation](#Installation)
+- [Installation](#installation)
 
 ## How to use this repo?
 
 There are currently two main playbooks to launch and destroy Digital Ocean droplets with Ansible. Once the project is installed, the playbooks can be run as follows.
 
-### launch.yml
+#### Create a new Digital Ocean droplet
 Launch and provision a new server on Digital Ocean.
 ```shell
 ansible-playbook launch.yml -c local
 ```
 
-### destroy.yml
+#### Destroy a Digital Ocean droplet
 Destroys a server on Digital Ocean.
 ```shell
 ansible-playbook destroy.yml -c local
