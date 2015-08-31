@@ -1,20 +1,37 @@
 Digital Ocean Bootstrap
 =======================
 
-Bootstrap Digital Ocean droplets using Ansible to:
+Use the Digital Ocean droplets using Ansible 2.0 to:
 
-* Configure SSH key
-* Launch a droplet
-* Configure DNS domain
-* Destroy droplet
+### Table of contents
+- [Overview](#Overview)
+- [How to use this repo](#features)
+- [Requirements](#requirements)
+- [Installation](#Installation)
 
-Inspired by [hostmaster/ansible-digitalocean-bootstrap](https://github.com/hostmaster/ansible-digitalocean-bootstrap).
+## How to use this repo?
 
-## Installation
+There are currently two main playbooks to launch and destroy Digital Ocean droplets with Ansible. Once the project is installed, the playbooks can be run as follows.
+
+### launch.yml
+Launch and provision a new server on Digital Ocean.
+```shell
+ansible-playbook launch.yml -c local
+```
+
+### destroy.yml
+Destroys a server on Digital Ocean.
+```shell
+ansible-playbook destroy.yml -c local
+```
+
+## Requirements
 
 * Install Ansible
 
 Linux, Mac, Windows, Fedora
+
+## Installation
 
 * Install dependencies with pip
 
@@ -93,19 +110,16 @@ ssh_groups: "sudo"
 ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 ```
 
-## Playbooks
-
-### launch.yml
-Launch and provision a new server on Digital Ocean.
-```shell
-ansible-playbook launch.yml
-```
-
-### destroy.yml
-Destroys a server on Digital Ocean.
-```shell
-ansible-playbook destroy.yml
-```
+The following variables are available:
+- `do_api_token`
+    * A string representing the image to use when creating a new droplet. It defaults to `ubuntu-14-04-x64`.
+    List available images with the `digitalocean-list images $DIGITAL_OCEAN_TOKEN` command. Like when using the DigitalOcean API directly, [it can be an image ID or slug](https://developers.digitalocean.com/documentation/v2/#create-a-new-droplet).
+- `do_ssh_name`
+    * A boolean flag indicating whether to enable IPv6
+- `do_region`
+    * A string representing the region to create the new droplet in. It defaults to `nyc2`. List available regions with the `digitalocean-list regions $DIGITAL_OCEAN_TOKEN` command.
+- `do_size`
+    * A string representing the size to use when creating a new droplet (e.g. `1gb`). It defaults to `512mb`. List available sizes with the `digitalocean-list sizes $DIGITAL_OCEAN_TOKEN` command. 
 
 ### Resources
 
