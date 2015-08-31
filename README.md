@@ -1,7 +1,7 @@
 Digital Ocean Bootstrap
 =======================
 
-Use the Digital Ocean droplets using Ansible 2.0 to:
+Use the Digital Ocean API v2 to create and Droplets using Ansible 2.0:
 
 ### Table of contents
 - [Overview](#Overview)
@@ -46,9 +46,9 @@ pip install requirements.txt
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 ```
 
-* Copy `vars.yml.dist` to `vars.yml`
+* Create the `vars.yml`
 
-Please note there is a `.gitignore` directive to exclude the `vars.yml` file so be sure the naming convention is followed if there are any private variables.
+Copy the `vars.yml.dist` and rename the file to `vars.yml`. Please note there is a `.gitignore` directive to exclude the `vars.yml` file so be sure the naming convention is followed if there are any private variables.
 
 ## Authentication
 
@@ -56,7 +56,7 @@ There are two ways to authenticate with Digital Ocean
 
 #### A) Set the DO_API_TOKEN
 
-Set the DO_API_TOKEN and this will avoid having to set the authentication token in `vars.yml`.
+Set the `DO_API_TOKEN` and this will avoid having to set the authentication token in `vars.yml`.
 
 Two environment variables can be used, either the `DO_API_KEY` and `DO_API_TOKEN`. They both refer to the v2 token.
 
@@ -75,17 +75,7 @@ do_api_token: XXXX
 
 ## Configuration
 
-Change the variables to your need. @todo list of variables
-
-* Create the default hosts file (optional):
-
-@todo this should local to the project
-
-```shell
-sudo echo "localhost ansible_connection=local" > /etc/ansible/hosts
-```
-
-## Variables
+#### Variables
 
 ```ruby
 # DO API settings
@@ -119,7 +109,7 @@ The following variables are available:
 - `do_region`
     * A string representing the region to create the new droplet in. It defaults to `nyc2`. List available regions with the `digitalocean-list regions $DIGITAL_OCEAN_TOKEN` command.
 - `do_size`
-    * A string representing the size to use when creating a new droplet (e.g. `1gb`). It defaults to `512mb`. List available sizes with the `digitalocean-list sizes $DIGITAL_OCEAN_TOKEN` command. 
+    * A string representing the size to use when creating a new droplet (e.g. `1gb`). It defaults to `512mb`. List available sizes with the `digitalocean-list sizes $DIGITAL_OCEAN_TOKEN` command.
 
 ### Resources
 
