@@ -23,13 +23,12 @@ pip install requirements.txt
 ```
 
 * Make sure your python path is configured correctly.
-
-```
-* Make sure your python path is configured correctly.
 ```shell
 #for example when using OSX homebrew
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 ```
+
+## Configuration
 
 * Copy vars.yml.dist to vars.yml
 
